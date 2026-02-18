@@ -61,9 +61,10 @@ def main():
 
 	os.mkdir(tmp_dir)
 
-	shutil.copy(filename, tmp_dir)
+	tmp_file = os.path.join(tmp_dir, os.path.basename(filename))
+	shutil.copy(filename, tmp_file)
 
-	with zipfile.ZipFile(tmp_dir + filename, 'r') as zip_handle:
+	with zipfile.ZipFile(tmp_file, 'r') as zip_handle:
 		zip_handle.extractall(tmp_dir)
 
 	try:
